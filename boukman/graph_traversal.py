@@ -22,14 +22,15 @@ def to_normalized_adjacency_matrix(
 ) -> sparse.csr_matrix:
     """Take a technosphere matrix constructed with Brightway conventions, and return a normalized adjacency matrix.
 
-    In the adjacency matrix A, `A[i,j]` indicates a directed edge **from** row `i` **to** column `j`. This fits
-    the Brightway mode, where `A[i,j]` means **activity** `j` consumes the output of activity `i`. In other words,
-    this matrix is ready for traversal from a functional unit to a supplier; to go in the opposite direction,
-    use the transpose of this matrix.
+    In the adjacency matrix A, `A[i,j]` indicates a directed edge **from** row `i` **to** column `j`. However, 
+    this is the opposite of what we normally want, which is to find a path from the functional activity to 
+    somewhere in its supply chain. In a Brightway technosphere matrix, `A[i,j]` means **activity** `j` consumes 
+    the output of activity `i`. To go down the supply chain, however, we would need to go from ``j`` to ``i``.
+    Therefore, we take the transpose of the technosphere matrix.
 
     Normalization is done to remove the effect of activities which don't produce one unit of their reference product.
     For example, if activity `foo` produces two units of `bar` and consumes two units of `baz`, the weight of the
-    `baz` edge should be 2 / 2 = 1.
+    `baz` edge should be :math:`2 / 2 = 1`.
 
     In addition to this normalization, we subtract the diagonal and flip the signs of all matrix values. Flipping
     the sign is needed because we want to use a shortest path algorithm, but actually want the longest path. The
