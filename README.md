@@ -21,11 +21,13 @@
 
 ## Installation
 
-You can install _boukman_ via [pip] from [PyPI]:
+You can install _boukman_ via pip or conda (channel `cmutel`).
 
-```console
-$ pip install boukman
-```
+## Usage
+
+`boukman` is a library supply chain manipulation and miscellaneous magic for use in the Brightway life cycle assessment framework. It is only compatible with version 2.5 or higher of Brightway. It is named in honor of [Dutty Boukman](https://en.wikipedia.org/wiki/Dutty_Boukman).
+
+Supply chain manipulations can be stored as [datapackages](https://github.com/brightway-lca/bw_processing) in memory or as new Brightway databases.
 
 ## Contributing
 
