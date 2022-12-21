@@ -84,7 +84,7 @@ def path_as_brightway_objects(
     lca.lci()
 
     path = skn.path.get_shortest_path(
-        adjacency=to_normalized_adjacency_matrix(mapped_matrix=lca.technosphere_mm),
+        adjacency=to_normalized_adjacency_matrix(matrix=lca.technosphere_mm.matrix),
         sources=lca.activity_dict[source_node.id],
         targets=lca.activity_dict[target_node.id],
         method="BF",
